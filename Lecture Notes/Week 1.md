@@ -1,4 +1,4 @@
-# CS 61B
+# CS 61B Week 1
 
 ## 1.1 Intro, Hello World Java
 
