@@ -105,3 +105,4 @@ When creating an array of references to Item:
 * Causes a compiler warning, which you should ignore.
 
 The another change to our code is that we will delete an item by setting it to `null` instead of `0`, which could be collected by Java Garbage Collector.
+
