@@ -227,3 +227,42 @@ public static void testSwap() {
 }
 ```
 
+### Recursive Array Helper Method
+
+Since Java doesn't support array slicing (`x[1:2]`), we should add a helper method to recursively sort the whole array.
+
+```java
+public static void sort(String[] x) {
+    sort(x, 0);
+}
+
+public static void sort(String[] x, int start) {
+    smallestIndex = findSmallest(x);
+    swap(x, start, smallestIndex);
+    sort(x, start + 1);
+}
+```
+
+However, the `findSmallest` method doesn't work well since it will start from 0 instead of the start point. We could easily fix it.
+
+```java
+public static int findSmallest(String[] x, int start) {
+    int smallestIndex = start;
+    for (int i = start; i < x.length; i += 1) {
+        int cmp = x[i].compareTo(x[smallestIndex]);
+        if (cmp < 0) {
+            smallestIndex = i;
+        }
+    }
+    return smallestIndex;
+}
+```
+
+### Enhanced JUnit Test
+
+To allow IntelliJ to automatically run the tests, we could modify our test structure as the following rules:
+
+* Import the library `org.junit.Test`.
+* Precede each method with `@Test` (no semi-colon).
+* Change each test method to be non-static.
+* Remove our main method from the `TestSort` class.
