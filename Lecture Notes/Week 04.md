@@ -534,7 +534,7 @@ public class ArraySet<T> implements Iterable<T> {
 
 ### toString
 
-If we want to print out the whole class, we have to implement `toString` method.
+If we want to print out the whole class, we have to override `toString` method, or we will only get the name and the address of the object.
 
 ```java
 public String toString() {

@@ -3,7 +3,15 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class IntListTest {
-
+    @Test(timeout = 1000)
+    public void testReverse() {
+        IntList one = IntList.of(1, 2, 3);
+        assertNotEquals(one, IntList.reverse(one));
+        IntList two = IntList.of(1, 2, 3);
+        assertEquals(IntList.of(3, 2, 1), IntList.reverse(two));
+        IntList three = IntList.of();
+        assertEquals(three, IntList.reverse(null));
+    }
     /**
      * Example test that verifies correctness of the IntList.of static
      * method. The main point of this is to convince you that
