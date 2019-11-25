@@ -85,10 +85,10 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        if (index > size) {
+        if (index >= size) {
             return null;
         }
-        ListNode p = sentinel;
+        ListNode p = sentinel.next;
         for (int i = 0; i < index; i++) {
             p = p.next;
         }
