@@ -56,15 +56,14 @@ public class ArrayDequeTest {
 
         ArrayDeque<String> lld2 = new ArrayDeque<String>(lld1);
 
-        for (int i = 0; i < 100; i += 2) {
+        for (int i = 0; i < 100; i += 1) {
             lld2.addFirst(Integer.toString(i));
-            lld2.addFirst(Integer.toString(i + 1));
         }
 
-        for (int i = 0; i < 100; i += 2) {
-            lld2.removeFirst();
-            lld2.removeFirst();
-        }
+//        for (int i = 0; i < 100; i += 2) {
+//            lld2.removeFirst();
+//            lld2.removeFirst();
+//        }
         lld2.printDeque();
         printTestStatus(passed);
     }

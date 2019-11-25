@@ -1,53 +1,70 @@
-public class ArrayDeque<T> {
+import java.lang.reflect.Array;
 
-    private T[] items;
+class ArrayDeque<T> {
+    private int size;
     private int nextFirst;
     private int nextLast;
-    private int size;
+    private T[] items;
+
+    public int addOne(int i) {
+        return (i + 1) % items.length;
+    }
+
+    public int minusOne(int i) {
+        return (i - 1 + items.length) % items.length;
+    }
+
+    public boolean isFull() {
+        return size == items.length;
+    }
+
+    public boolean isSparse() {
+        return items.length >= 16 && size < (items.length / 4);
+    }
+
+    public void resize(int length) {
+        T[] cache = (T[]) new Object[length];
+        int oldIndex = addOne(nextFirst);
+        for (int i = 0; i < size; i++) {
+            cache[i] = items[oldIndex];
+            oldIndex = addOne(oldIndex);
+        }
+        items = cache;
+        nextFirst = length - 1;
+        nextLast = size;
+    }
 
     public ArrayDeque() {
-        // Java does not allow to create new generic array directly. So need cast.
         items = (T[]) new Object[8];
         nextFirst = 0;
         nextLast = 1;
         size = 0;
     }
 
-    private boolean isFull() {
-        return size == items.length;
+    public ArrayDeque(ArrayDeque other) {
+        items = (T[]) new Object[other.items.length];
+        nextFirst = other.nextFirst;
+        nextLast = other.nextLast;
+        size = other.size;
+        System.arraycopy(other.items, 0, items, 0, other.items.length);
     }
 
-    private boolean isSparse() {
-        return items.length >= 16 && size < (items.length / 4);
-    }
-
-    private int plusOne(int index) {
-        return (index + 1) % items.length;
-    }
-
-    private int minusOne(int index) {
-        return (index - 1 + items.length) % items.length;
-    }
-
-    private void resize(int capacity) {
-        T[] newDeque = (T[]) new Object[capacity];
-        int oldIndex = plusOne(nextFirst); // the index of the first item in original deque
-        for (int newIndex = 0; newIndex < size; newIndex++) {
-            newDeque[newIndex] = items[oldIndex];
-            oldIndex = plusOne(oldIndex);
+    public void addFirst(T item) {
+        if (isFull()) {
+            resize(items.length * 2);
         }
-        items = newDeque;
-        nextFirst = capacity - 1;
-        nextLast = size;
-
+        items[nextFirst] = item;
+        nextFirst = minusOne(nextFirst);
+        size += 1;
     }
 
-    private void upSize() {
-        resize(size * 2);
-    }
-
-    private void downSize() {
-        resize(items.length / 2);
+    public void addLast(T item) {
+        if (isFull()) {
+            resize(items.length * 2);
+        }
+        items[nextLast] = item;
+        nextLast = addOne(nextLast);
+        size -= 1;
     }
 
     public boolean isEmpty() {
@@ -59,70 +76,47 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for (int i = plusOne(nextFirst); i != nextLast; i = plusOne(i)) {
-            System.out.print(items[i] + " ");
+        int index = addOne(nextFirst);
+        for (int i = 0; i < size; i++) {
+            System.out.print(items[index] + " ");
+            index = addOne(index);
         }
         System.out.println();
     }
 
-    public void addFirst(T x) {
-        if (isFull()) {
-            upSize();
-        }
-        items[nextFirst] = x;
-        nextFirst = minusOne(nextFirst);
-        size += 1;
-    }
-
-    public void addLast(T x) {
-        if (isFull()) {
-            upSize();
-        }
-        items[nextLast] = x;
-        nextLast = plusOne(nextLast);
-        size += 1;
-    }
-
     public T removeFirst() {
         if (isSparse()) {
-            downSize();
+            resize(items.length / 2);
         }
-        nextFirst = plusOne(nextFirst);
-        T toRemove = items[nextFirst];
+        nextFirst = addOne(nextFirst);
+        T item = items[nextFirst];
         items[nextFirst] = null;
+        size -= 1;
         if (!isEmpty()) {
             size -= 1;
         }
-        return toRemove;
+        return item;
     }
 
     public T removeLast() {
         if (isSparse()) {
-            downSize();
+            resize(items.length / 2);
         }
         nextLast = minusOne(nextLast);
-        T toRemove = items[nextLast];
+        T item = items[nextLast];
         items[nextLast] = null;
+        size -= 1;
         if (!isEmpty()) {
             size -= 1;
         }
-        return toRemove;
+        return item;
     }
 
     public T get(int index) {
         if (index >= size) {
             return null;
         }
-        int start = plusOne(nextFirst);
+        int start = addOne(nextFirst);
         return items[(start + index) % items.length];
-    }
-
-    public ArrayDeque(ArrayDeque other) {
-        items = (T[]) new Object[other.size];
-        nextFirst = other.nextFirst;
-        nextLast = other.nextLast;
-        size = other.size;
-
-        System.arraycopy(other.items, 0, items, 0, other.size);
     }
 }
