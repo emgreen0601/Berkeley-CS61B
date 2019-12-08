@@ -1,7 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-class TestUnionFind {
+public class TestUnionFind {
 
     UnionFind uf = new UnionFind(6);
 
@@ -12,7 +12,7 @@ class TestUnionFind {
         uf.union(1, 2);
         assertEquals(1, uf.parent(0));
 
-        // assertTrue(uf.connected(0, 2));
+        assertTrue(uf.connected(0, 2));
         uf.union(0, 2);
         assertEquals(3, uf.parent(0)); // Path-compression
 

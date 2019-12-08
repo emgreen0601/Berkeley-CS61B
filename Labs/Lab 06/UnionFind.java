@@ -7,19 +7,20 @@ public class UnionFind {
     public UnionFind(int n) {
         parent = new int[n];
         for (int i = 0; i < n; i++) {
-            parent[i] = 0;
+            parent[i] = -1;
         }
     }
 
     /* Throws an exception if v1 is not a valid index. */
     private void validate(int vertex) {
-        if (vertex > parent.length) {
+        if (vertex >= parent.length || vertex < 0) {
             throw new IllegalArgumentException("v1 is not a valid index.");
         }
     }
 
     /* Returns the size of the set v1 belongs to. */
     public int sizeOf(int v1) {
+        validate(v1);
         return -parent[find(v1)];
     }
 
@@ -32,6 +33,8 @@ public class UnionFind {
 
     /* Returns true if nodes v1 and v2 are connected. */
     public boolean connected(int v1, int v2) {
+        validate(v1);
+        validate(v2);
         return find(v1) == find(v2);
     }
 
@@ -50,11 +53,7 @@ public class UnionFind {
         int size1 = sizeOf(root1);
         int size2 = sizeOf(root2);
 
-        if (v1 == v2) {
-            return;
-        } else if (connected(v1, v2)) {
-            parent[root1] = root2;
-        } else {
+        if (!connected(v1, v2)) {
             if (size1 > size2) {
                 parent[root2] = root1;
                 parent[root1] = -(size1 + size2);
@@ -69,12 +68,18 @@ public class UnionFind {
        allowing for fast search-time. */
     public int find(int vertex) {
         validate(vertex);
-        if (parent(vertex) >= 0) {
-            parent[vertex] = parent[parent(vertex)];
-            return find(parent(vertex));
-        } else {
-            return vertex;
+        int root = vertex;
+        while (parent(root) > -1) {
+            root = parent(root);
         }
+
+        int current;
+        while (vertex != root) {
+            current = parent(vertex);
+            parent[vertex] = root;
+            vertex = current;
+        }
+        return root;
     }
 
 }
