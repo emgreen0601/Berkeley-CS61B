@@ -64,27 +64,28 @@ connect(p, q): Change entries that equal id[p] to id[q]
 
 ```java
 public class QuickFindDS implements DisjointSets {
-	private int[] id;
- 
+   private int[] id;
+   
+   public QuickFindDS(int N) {
+      id = new int[N];
+      for (int i = 0; i < N; i++) {
+         id[i] = i;
+      }
+	}
+
 	public boolean isConnected(int p, int q) {
-    	    return id[p] == id[q];
+      return id[p] == id[q];
 	}
  
 	public void connect(int p, int q) {
-    	    int pid = id[p];
-        	int qid = id[q];
-       	for (int i = 0; i < id.length; i++) {
-            if (id[i] == pid) {
-              	id[i] = qid;
-            }
-    	}
+      int pid = id[p];
+      int qid = id[q];
+      for (int i = 0; i < id.length; i++) {
+         if (id[i] == pid) {
+            id[i] = qid;
+         }
+      }
     }
-
-    public QuickFindDS(int N) {
-   	id = new int[N];
-   	for (int i = 0; i < N; i++)
-       	id[i] = i;
-	}
 } 
 ```
 
@@ -102,7 +103,7 @@ However, this method is still slow since the tree might be quite tall and the co
 
 We could modify Quick Union to avoid tall trees: Track tree size and link root of smaller tree to the larger one.
 
-Thus, the `connect` and `isConnected` operation will never be slower than `logN`, which is fast enough for most programs.
+Thus, the `connect` and `isConnected` operation will never be slower than `log N`, which is fast enough for most programs.
 
 Although we could track the height instead of weight, we will find out that the performance is similar.
 
