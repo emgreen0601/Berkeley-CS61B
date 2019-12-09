@@ -1,4 +1,4 @@
-# CS 61B Week 3
+# CS 61B Week 03
 
 ## ALists, Resizing, vs. SLists
 

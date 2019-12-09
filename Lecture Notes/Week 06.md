@@ -1,4 +1,4 @@
-# CS 61B Week 5
+# CS 61B Week 06
 
 ## Disjoint Sets
 

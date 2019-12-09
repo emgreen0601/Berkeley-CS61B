@@ -1,4 +1,4 @@
-# CS 61B Week 2
+# CS 61B Week 02
 
 ## References, Recursion, and Lists
 

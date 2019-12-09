@@ -1,4 +1,4 @@
-# CS 61B Week 4
+# CS 61B Week 04
 
 ## Extends, Casting, Higher Order Functions
 
