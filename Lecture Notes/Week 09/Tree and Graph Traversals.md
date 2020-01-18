@@ -150,7 +150,7 @@ This kind of traversal could help us to find a path from s to every other reacha
 To implement this traversal algorithm, two arrays, `marked` and `edgeTo`, are required to record whether an vertex is marked and the parent of the vertex. 
 
 * Mark v.
-* For each unmarked aadjacent vertex w:
+* For each unmarked adjancent vertex w:
 * * Set `edgeTo[w] = v`.
 * * Run these steps for w.
 
