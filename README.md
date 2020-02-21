@@ -54,7 +54,7 @@ Instructor: Josh Hug
 * [Lab 07: TreeMap](https://github.com/Siujoeng-Lau/Berkeley-CS61B/tree/master/Labs/Lab%2007)
 * [Lab 08: HashMap](https://github.com/Siujoeng-Lau/Berkeley-CS61B/tree/master/Labs/Lab%2008)
 * [Lab 09: Tries](https://github.com/Siujoeng-Lau/Berkeley-CS61B/tree/master/Labs/Lab%2009)
-* Lab 11: Merge Sort and Quick Sort
+* [Lab 11: Merge Sort and Quick Sort](https://github.com/Siujoeng-Lau/Berkeley-CS61B/tree/master/Labs/Lab%2011)
 * Lab 12: Getting Started on Project 3
 * Lab 13: Getting Started on Project 3, Phase 2
 * Challenge Lab 06: Falling Bubbles
