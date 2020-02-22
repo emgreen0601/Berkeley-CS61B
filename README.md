@@ -68,7 +68,7 @@ Instructor: Josh Hug
 * [Homework 1: Java Syntax and Sound Synthesis](https://github.com/Siujoeng-Lau/Berkeley-CS61B/tree/master/Homeworks/HW%201)
 * [Homework 2: Percolation](https://github.com/Siujoeng-Lau/Berkeley-CS61B/tree/master/Homeworks/HW%202)
 * [Homework 3: Hashing](https://github.com/Siujoeng-Lau/Berkeley-CS61B/tree/master/Homeworks/HW%203)
-* Homework 4: Puzzle Solver
+* [Homework 4: Puzzle Solver](https://github.com/Siujoeng-Lau/Berkeley-CS61B/tree/master/Homeworks/HW%204)
 
 ## Projects
 
